@@ -3,9 +3,10 @@
 ### 1. Tener instalado Docker y Maven
 
 ### 2. Limpiar y Compliar el proyecto
-mvn clean install -DskipTests							
 
-### 3. Ejecturar test unitarios y verificar la coberura de codigo (El codigo queda en mutantsDnaAPI\target\site\jacoco\index.html)
+**mvn clean install -DskipTests**
+
+### 3. Ejecturar test unitarios y verificar la coberura de codigo (El reporte queda en mutantsDnaAPI\target\site\jacoco\index.html)
 
 **mvn clean jacoco:prepare-agent install jacoco:report**
 
@@ -24,8 +25,11 @@ Este comando levanta 5 contenedores correspondientes a:
 5. mysql-container(Contenedor de MySQL para la base de datos)
 
 ### 5. estadisticas de haproxy (balanceador)
+
 Usuario admin 
+
 Clave   admin
+
 URL      **http://localhost:70/stats**
 
 ![N|Solid](https://raw.githubusercontent.com/santosvaldesm/MutantsDnaAPI_level3/master/assets/Captura2.PNG)
