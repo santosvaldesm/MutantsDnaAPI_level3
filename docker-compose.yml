@@ -1,0 +1,52 @@
+version: "3"
+services:
+  mysql-container:
+    container_name: mysql-container
+    image: mysql:5.7
+    restart: always
+    ports:
+        - '33070:3306'
+    command: --init-file /data/application/init.sql
+    volumes:
+        - ./init.sql:/data/application/init.sql
+    environment:
+        MYSQL_ROOT_USER: root
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: DB
+        MYSQL_PASSWORD: root
+
+  microservicea:
+    build: .
+    depends_on: 
+      - mysql-container
+    expose:
+      - 8080
+
+  microserviceb:
+    build: .
+    depends_on: 
+      - mysql-container
+    expose:
+      - 8080
+
+  microservicec:
+    build: .
+    depends_on: 
+      - mysql-container
+    expose:
+      - 8080
+
+  haproxy:
+    container_name: haproxy_image
+    build:
+      context: ./haproxy
+      dockerfile: Dockerfile 
+    links:
+      - microservicea
+      - microserviceb
+      - microservicec
+    ports:
+      - "80:80"
+      - "70:70"
+    expose:
+      - "80"
