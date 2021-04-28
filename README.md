@@ -15,6 +15,13 @@ mvn clean jacoco:prepare-agent install jacoco:report
 
 docker-compose up
 
+Este comando levanta 5 contenedores correspondientes a 
+haproxy_image                        ... Balanceador HAProxy
+mutantsdnaapi_level3_microservicec_1 ... Microservicio 1
+mutantsdnaapi_level3_microservicea_1 ... Micriservicio 2
+mutantsdnaapi_level3_microserviceb_1 ... Microservicio 3
+mysql-container                      ... Contenedor de MySQL para la base de datos
+
 ### 5. estadisticas de haproxy (balanceador)
 Usuario admin 
 Clave   admin
@@ -47,6 +54,8 @@ Prueba por consola
 curl http://localhost/stats
 
 ### 6.3 GET /address
+
+Se creo este emetodo para comprobar el funcionamiento del balanceador, cada que se realiza una petición cambia de IP correspondiente a uno de los tres microservicios que se crearon
 
 ![N|Solid](https://raw.githubusercontent.com/santosvaldesm/MutantsDnaAPI_level3/master/assets/CapturaAddress.PNG)
 
